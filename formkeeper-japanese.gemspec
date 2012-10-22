@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = FormKeeper::Japanese::VERSION
   gem.authors       = ["lyokato"]
   gem.email         = ["lyo.kato@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = %q{formkeeper's plugin for japanese specific filters and validators}
+  gem.summary       = %q{This module provides you japanese specific filters and validators}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($/)
@@ -17,3 +17,4 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 end
+

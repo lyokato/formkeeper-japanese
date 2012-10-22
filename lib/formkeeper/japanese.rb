@@ -4,12 +4,12 @@ require "moji"
 module FormKeeper
   module Japanese
     module Filter
-      class ZenToHan < ::FormKeeper::Filter::Base
+      class ZenkakuToHankaku < ::FormKeeper::Filter::Base
         def process(value)
           Moji.zen_to_han(value)
         end
       end 
-      class HanToZen < ::FormKeeper::Filter::Base
+      class HankakuToZenkaku < ::FormKeeper::Filter::Base
         def process(value)
           Moji.han_to_zen(value)
         end
@@ -59,9 +59,9 @@ FormKeeper::Validator.register_filter :hiragana2katakana,
 FormKeeper::Validator.register_filter :katakana2hiragana, 
   FormKeeper::Japanese::Filter::KataToHira.new
 FormKeeper::Validator.register_filter :hankaku2zenkaku, 
-  FormKeeper::Japanese::Filter::HanToZen.new
+  FormKeeper::Japanese::Filter::HankakuToZenkaku.new
 FormKeeper::Validator.register_filter :zenkaku2hankaku, 
-  FormKeeper::Japanese::Filter::Zen2Han.new
+  FormKeeper::Japanese::Filter::ZenkakuToHankaku.new
 FormKeeper::Validator.register_constraint :kana, 
   FormKeeper::Japanese::Constraint::Kana.new
 FormKeeper::Validator.register_constraint :hiragana, 
