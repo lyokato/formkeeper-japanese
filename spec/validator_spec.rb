@@ -39,6 +39,24 @@ describe FormKeeper::Japanese do
 
   end
 
+  it "validates invalid length of hiragana" do
+
+    rule = FormKeeper::Rule.new
+    rule.filters :hiragana2katakana
+    rule.field :nickname, :present => true, :kana => true, :characters => 4..8
+
+    params = {}
+    params['nickname'] = 'ほげ'
+
+    validator = FormKeeper::Validator.new
+    report = validator.validate(params, rule)
+
+    report.failed?.should be_true
+
+    report.failed_on?(:nickname, :characters).should be_true
+
+  end
+
   it "validates zenkaku integer" do
 
     rule = FormKeeper::Rule.new
