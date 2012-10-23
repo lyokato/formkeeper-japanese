@@ -6,7 +6,7 @@ gemspec
 gem "hpricot"
 gem "rack"
 gem "moji"
-gem "formkeeper", "~> 0.0.3", :git => 'git://github.com/lyokato/formkeeper'
+gem "formkeeper", "~> 0.0.4"
 
 group :development, :test do
   gem "rspec"
