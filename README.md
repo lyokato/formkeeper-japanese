@@ -1,6 +1,6 @@
 # FormKeeper::Japanese
 
-TODO: Write a gem description
+This provides Japanese specific filters and constraints for formkeeper
 
 ## Installation
 
@@ -18,7 +18,40 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Synopsis
+
+In your sinatra application with sinatra-formkeeper
+
+```ruby
+require 'sinatra/formkeeper'
+require 'formkeeper/japanese'
+
+post '/entry' do
+  form do
+    field :yomigana, :present => true, :katakana => true, :length => 0..16 :filters => [:hiragana_to_katakana]
+    field :tel, :present => true, :int => true, :filters => [:zenkaku_to_hankaku]
+  end
+end
+
+```
+
+### Filters
+
+* zenkaku_to_hankaku
+* hankaku_to_zenkaku
+* hiragana_to_katakana
+* katakana_to_hiragana
+
+### Constraints
+
+* kana
+* hiragana
+* katakana
+
+## See Also
+
+* https://github.com/lyokato/formkeeper
+* https://github.com/lyokato/sinatra-formkeeper
 
 ## Contributing
 

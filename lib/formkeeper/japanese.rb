@@ -4,6 +4,7 @@ require "moji"
 module FormKeeper
   module Japanese
     module Filter
+
       class ZenkakuToHankaku < ::FormKeeper::Filter::Base
         def process(value)
           Moji.zen_to_han(value)
@@ -28,7 +29,6 @@ module FormKeeper
     module Constraint
       class Kana < FormKeeper::Constraint::Base
         def validate(value, arg)
-          # TODO support ZENKAKU/HANKAKU KIGOU \p{Punct}
           result = value =~ /^#{Moji.kana}+$/
           result = !result if !arg
           result
@@ -36,7 +36,6 @@ module FormKeeper
       end
       class Hiragana < FormKeeper::Constraint::Base
         def validate(value, arg)
-          # TODO support ZENKAKU/HANKAKU KIGOU \p{Punct}
           result = value =~ /^#{Moji.hira}+$/
           result = !result if !arg
           result
@@ -44,7 +43,6 @@ module FormKeeper
       end
       class Katakana < FormKeeper::Constraint::Base
         def validate(value, arg)
-          # TODO support ZENKAKU/HANKAKU KIGOU
           result = value =~ /^#{Moji.kata}+$/
           result = !result if !arg
           result
@@ -54,13 +52,13 @@ module FormKeeper
   end
 end
 
-FormKeeper::Validator.register_filter :hiragana2katakana, 
+FormKeeper::Validator.register_filter :hiragana_to_katakana, 
   FormKeeper::Japanese::Filter::HiraToKata.new
-FormKeeper::Validator.register_filter :katakana2hiragana, 
+FormKeeper::Validator.register_filter :katakana_to_hiragana, 
   FormKeeper::Japanese::Filter::KataToHira.new
-FormKeeper::Validator.register_filter :hankaku2zenkaku, 
+FormKeeper::Validator.register_filter :hankaku_to_zenkaku, 
   FormKeeper::Japanese::Filter::HankakuToZenkaku.new
-FormKeeper::Validator.register_filter :zenkaku2hankaku, 
+FormKeeper::Validator.register_filter :zenkaku_to_hankaku, 
   FormKeeper::Japanese::Filter::ZenkakuToHankaku.new
 FormKeeper::Validator.register_constraint :kana, 
   FormKeeper::Japanese::Constraint::Kana.new
